@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--  Global Colors  -->
+    <color name="purple_200">#BB86FC</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+
+    <!--  System Colors  -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_primary">@color/purple_500</color>
+    <color name="color_primary_variant">@color/purple_700</color>
+    <color name="color_secondary">@color/teal_200</color>
+    <color name="color_secondary_variant">@color/teal_700</color>
+    <color name="color_background">#FFF</color>
+    <color name="color_surface">#FCFCFC</color>
+    <color name="color_surface_darker">#F5F5F5</color>
+    <color name="color_error">#B00020</color>
+    <color name="color_on_primary">#FFF</color>
+    <color name="color_on_secondary">#000</color>
+    <color name="color_on_error">#FFF</color>
+    <color name="color_on_background">#000</color>
+    <color name="color_on_surface">#000</color>
+
+    <color name="favourite_icon_color">#EB564F</color>
+    <color name="rating_icon_color">#F1B247</color>
+
+    <!-- Override the default color noFocus for TextInputLayout Box Stroke -->
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">
+        @color/color_on_surface
+    </color>
+
+</resources>

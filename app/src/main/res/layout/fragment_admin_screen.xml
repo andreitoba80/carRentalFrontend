@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    tools:context=".ui.view.AdminScreenFragment">
+
+    <TextView
+        android:id="@+id/welcome_user_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:textColor="@color/color_on_background"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Welcome Andrei" />
+
+    <TextView
+        android:id="@+id/admin_panel_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/admin_panel"
+        android:textColor="@color/color_on_background"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@id/welcome_user_message"
+        app:layout_constraintTop_toBottomOf="@id/welcome_user_message" />
+
+    <include
+        android:id="@+id/manage_users_button"
+        layout="@layout/admin_control_panel_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@id/manage_cars_listing_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/admin_panel_label" />
+
+    <include
+        android:id="@+id/manage_cars_listing_button"
+        layout="@layout/admin_control_panel_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/manage_users_button"
+        app:layout_constraintTop_toTopOf="@id/manage_users_button" />
+
+    <include
+        android:id="@+id/manage_car_brands_listing_button"
+        layout="@layout/admin_control_panel_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@id/manage_users_button"
+        app:layout_constraintTop_toBottomOf="@id/manage_users_button" />
+
+    <include
+        android:id="@+id/manage_bookings_button"
+        layout="@layout/admin_control_panel_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/manage_cars_listing_button"
+        app:layout_constraintTop_toTopOf="@id/manage_car_brands_listing_button" />
+
+    <include
+        android:id="@+id/reports_button"
+        layout="@layout/admin_control_panel_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@id/manage_car_brands_listing_button"
+        app:layout_constraintTop_toBottomOf="@id/manage_car_brands_listing_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

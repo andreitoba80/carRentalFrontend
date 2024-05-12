@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    tools:context=".ui.view.EditUserFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/top_user_list_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-25dp"
+        android:backgroundTint="@color/color_primary"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="25dp">
+
+            <TextView
+                android:id="@+id/manage_users_title_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="24dp"
+                android:layout_marginStart="24dp"
+                android:text="Edit User"
+                android:textColor="@color/color_on_primary"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="@id/manage_users_title_label"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/manage_users_title_label"
+                app:tint="@color/color_on_primary" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/color_surface"
+        android:elevation="5dp"
+        app:cardCornerRadius="25dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/edit_user_surface_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_surface">
+
+            <TextView
+                android:id="@+id/user_details_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="USER DETAILS"
+                android:textColor="@color/color_on_surface"
+                android:textSize="32sp"
+                app:layout_constraintStart_toStartOf="@id/username_text_input_layout"
+                app:layout_constraintTop_toTopOf="@id/edit_user_surface_view" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fullname_text_input_layout"
+                style="@style/TextInputLayoutStyleOnSurface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:hint="Full Name"
+                app:layout_constraintBottom_toTopOf="@id/username_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/edit_user_surface_view"
+                app:layout_constraintStart_toStartOf="@id/edit_user_surface_view"
+                app:layout_constraintTop_toBottomOf="@id/user_details_label"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:startIconDrawable="@drawable/ic_profile_icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fullname_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_on_surface" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username_text_input_layout"
+                style="@style/TextInputLayoutStyleOnSurface"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:hint="Username"
+                app:layout_constraintBottom_toTopOf="@id/email_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/fullname_text_input_layout"
+                app:layout_constraintStart_toStartOf="@id/fullname_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/fullname_text_input_layout"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:startIconDrawable="@drawable/ic_profile_icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_on_surface" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_text_input_layout"
+                style="@style/TextInputLayoutStyleOnSurface"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:hint="Email"
+                app:layout_constraintBottom_toTopOf="@id/password_text_input_layout"
+                app:layout_constraintEnd_toEndOf="@id/fullname_text_input_layout"
+                app:layout_constraintStart_toStartOf="@id/fullname_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/username_text_input_layout"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:startIconDrawable="@drawable/ic_email_icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_on_surface" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_text_input_layout"
+                style="@style/PasswordInputLayoutStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:hint="Password"
+                app:layout_constraintBottom_toTopOf="@id/is_admin_toggle"
+                app:layout_constraintEnd_toEndOf="@id/fullname_text_input_layout"
+                app:layout_constraintStart_toStartOf="@id/fullname_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/email_text_input_layout"
+                app:startIconDrawable="@drawable/ic_lock_icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/color_on_surface" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RadioGroup
+                android:id="@+id/is_admin_toggle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:background="@drawable/primary_out_line"
+                android:checkedButton="@id/is_not_admin_button"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/edit_button"
+                app:layout_constraintEnd_toEndOf="@id/fullname_text_input_layout"
+                app:layout_constraintStart_toStartOf="@id/fullname_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/password_text_input_layout">
+
+                <RadioButton
+                    android:id="@+id/is_not_admin_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_toggle_widget_background"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Is Not Admin"
+                    android:textColor="@drawable/radio_text_color_selector" />
+
+                <RadioButton
+                    android:id="@+id/is_admin_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_toggle_widget_background"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="Is Admin"
+                    android:textColor="@drawable/radio_text_color_selector" />
+
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/edit_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/color_primary"
+                android:text="Edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/fullname_text_input_layout"
+                app:layout_constraintStart_toStartOf="@id/fullname_text_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/is_admin_toggle"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

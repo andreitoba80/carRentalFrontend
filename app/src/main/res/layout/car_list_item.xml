@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="2dp"
+    app:cardBackgroundColor="@color/color_background"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/car_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/slight_round_background"
+            android:backgroundTint="@color/color_surface_darker"
+            android:paddingHorizontal="32dp"
+            android:src="@drawable/tesla_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rating_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/color_background"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintStart_toStartOf="@id/car_image_view"
+            app:layout_constraintTop_toTopOf="@id/car_image_view">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingHorizontal="3dp">
+
+                <ImageView
+                    android:id="@+id/rating_icon"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_star"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/rating_icon_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="4.9"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/rating_icon"
+                    app:layout_constraintStart_toEndOf="@id/rating_icon"
+                    app:layout_constraintTop_toTopOf="@id/rating_icon" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/favourite_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="@id/car_image_view"
+            app:layout_constraintTop_toTopOf="@id/car_image_view">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_favourite_icon"
+                app:tint="@color/favourite_icon_color" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/car_type_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/small_round_background"
+            android:backgroundTint="@color/color_surface_darker"
+            android:paddingHorizontal="5dp"
+            android:text="Sedan"
+            android:textColor="@color/color_primary"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/car_image_view"
+            app:layout_constraintTop_toBottomOf="@id/car_image_view" />
+
+        <TextView
+            android:id="@+id/car_model_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Tesla Model 3"
+            android:textColor="@color/color_on_surface"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/car_type_text_view"
+            app:layout_constraintTop_toBottomOf="@id/car_type_text_view" />
+
+        <TextView
+            android:id="@+id/price_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:text="$25.00"
+            android:textColor="@color/color_primary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/car_model_text_view"
+            app:layout_constraintEnd_toStartOf="@id/price_time_label"
+            app:layout_constraintTop_toTopOf="@id/car_type_text_view" />
+
+        <TextView
+            android:id="@+id/price_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/day"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/car_model_text_view"
+            app:layout_constraintEnd_toEndOf="@id/car_image_view"
+            app:layout_constraintTop_toTopOf="@id/car_type_text_view" />
+
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/custom_divider"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginVertical="10dp"
+            app:dividerColor="@color/color_surface_darker"
+            app:layout_constraintBottom_toTopOf="@id/transmission_icon"
+            app:layout_constraintEnd_toEndOf="@id/car_image_view"
+            app:layout_constraintStart_toStartOf="@id/car_image_view"
+            app:layout_constraintTop_toBottomOf="@id/car_model_text_view" />
+
+        <!-- todo: create a grey color for the text (transmission, fuel_type, seats_number and price_time_label) -->
+        <ImageView
+            android:id="@+id/transmission_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_transmission_manual"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/custom_divider"
+            app:layout_constraintTop_toBottomOf="@id/custom_divider"
+            app:tint="@color/color_primary" />
+
+        <TextView
+            android:id="@+id/transmission_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Manual"
+            app:layout_constraintBottom_toBottomOf="@id/transmission_icon"
+            app:layout_constraintStart_toEndOf="@id/transmission_icon"
+            app:layout_constraintTop_toTopOf="@id/transmission_icon" />
+
+        <ImageView
+            android:id="@+id/fuel_type_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_gas_type"
+            app:layout_constraintEnd_toStartOf="@id/fuel_type_text_view"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/transmission_text_view"
+            app:layout_constraintTop_toTopOf="@id/transmission_icon"
+            app:tint="@color/color_primary" />
+
+        <TextView
+            android:id="@+id/fuel_type_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Petrol"
+            app:layout_constraintBottom_toBottomOf="@id/transmission_icon"
+            app:layout_constraintEnd_toStartOf="@id/person_capacity_icon"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/fuel_type_icon"
+            app:layout_constraintTop_toTopOf="@id/transmission_icon" />
+
+        <ImageView
+            android:id="@+id/person_capacity_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_person"
+            app:layout_constraintEnd_toStartOf="@id/person_capacity_text_view"
+            app:layout_constraintTop_toTopOf="@id/transmission_icon"
+            app:tint="@color/color_primary" />
+
+        <TextView
+            android:id="@+id/person_capacity_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="5 Seats"
+            app:layout_constraintBottom_toBottomOf="@id/transmission_icon"
+            app:layout_constraintEnd_toEndOf="@id/car_image_view"
+            app:layout_constraintTop_toTopOf="@id/transmission_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

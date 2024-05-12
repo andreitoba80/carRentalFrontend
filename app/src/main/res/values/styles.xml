@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextInputLayoutStyleOnSurface" parent="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox">
+        <item name="boxStrokeColor">@color/color_primary</item>
+        <item name="android:textColorHint">@color/color_on_surface</item>
+        <item name="hintTextColor">@color/color_primary</item>
+        <item name="startIconTint">@color/color_on_surface</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="TextInputLayoutStyleOnPrimary" parent="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox">
+        <item name="boxStrokeColor">@color/color_on_primary</item>
+        <item name="android:textColorHint">@color/color_on_primary</item>
+        <item name="hintTextColor">@color/color_on_primary</item>
+        <item name="startIconTint">@color/color_on_primary</item>
+        <item name="singleLine">true</item>
+    </style>
+
+    <style name="PasswordInputLayoutStyle" parent="TextInputLayoutStyleOnSurface">
+        <item name="endIconCheckable">true</item>
+        <item name="endIconMode">password_toggle</item>
+        <item name="singleLine">true</item>
+        <item name="endIconTint">@color/color_on_surface</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.BottomAppBar.TopCornersRounded" parent="Widget.MaterialComponents.BottomAppBar">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.App.BottomAppBar.Rounded
+        </item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.BottomAppBar.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">25dp</item>
+        <item name="cornerSizeTopRight">25dp</item>
+    </style>
+
+    <style name="Subtitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:textColor">@color/color_on_background</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="SmallClickableText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:textColor">@color/color_primary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>

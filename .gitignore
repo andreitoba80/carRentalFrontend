@@ -13,7 +13,6 @@
 .externalNativeBuild
 .cxx
 
-
 # Gradle files
 .gradle/
 build/
