@@ -47,7 +47,7 @@
                 app:tint="@color/color_on_primary" />
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_field_edit_text"
+                android:id="@+id/search_car_brand_field_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -77,10 +77,10 @@
                 android:contentDescription="Filter Button"
                 android:padding="5dp"
                 android:src="@drawable/ic_filter_edit_icon"
-                app:layout_constraintBottom_toBottomOf="@id/search_field_edit_text"
+                app:layout_constraintBottom_toBottomOf="@id/search_car_brand_field_edit_text"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/search_field_edit_text"
+                app:layout_constraintTop_toTopOf="@id/search_car_brand_field_edit_text"
                 tools:ignore="NotSibling" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

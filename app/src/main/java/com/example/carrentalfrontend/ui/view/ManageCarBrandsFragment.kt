@@ -2,6 +2,8 @@ package com.example.carrentalfrontend.ui.view
 
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,10 +28,12 @@ class ManageCarBrandsFragment : Fragment() {
     private val viewModel by viewModel<ManageCarBrandsViewModel>()
 
     private lateinit var binding: FragmentManageCarBrandsBinding
+
     private lateinit var carBrandsListAdapter: CarBrandsListAdapter
     private lateinit var carBrandList: ArrayList<CarBrand>
-    private lateinit var createCarBrandDialogView: View
+    private var filteredCarBrandList: ArrayList<CarBrand> = ArrayList()
 
+    private lateinit var createCarBrandDialogView: View
     private lateinit var uploadImageUri: Uri
     private lateinit var galleryImage: ActivityResultLauncher<String>
 
@@ -71,6 +75,29 @@ class ManageCarBrandsFragment : Fragment() {
             logDebugError("I have clicked Create Car Brand Button")
             showCreateBrandDialog()
         }
+
+        binding.searchCarBrandFieldEditText.addTextChangedListener(
+            object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    val searchString = s.toString()
+                    filteredCarBrandList = carBrandList.filter {
+                        it.brand.contains(searchString, ignoreCase = true)
+                    } as ArrayList<CarBrand>
+                    addDataToList(filteredCarBrandList)
+                    logDebugError("Filtered CarBrand List: $filteredCarBrandList")
+                }
+            }
+        )
     }
 
     private fun showCreateBrandDialog() {
@@ -87,7 +114,6 @@ class ManageCarBrandsFragment : Fragment() {
                 val brandEditText =
                     createCarBrandDialogView.findViewById<EditText>(R.id.car_brand_name_edit_text)
                 val brandName = brandEditText.text.toString()
-
                 val fileUri = uploadImageUri
 
                 viewModel.addCarBrand(brandName, fileUri)
@@ -95,7 +121,6 @@ class ManageCarBrandsFragment : Fragment() {
         }
         createCarBrandDialogView.findViewById<Button>(R.id.upload_icon_button).setOnClickListener {
             logDebugError("I have clicked Upload Button")
-
             galleryImage.launch("image/*")
         }
         val dialog = builder?.create()
@@ -128,11 +153,12 @@ class ManageCarBrandsFragment : Fragment() {
 
     private fun addDataToList(carBrands: ArrayList<CarBrand>) {
         carBrandsListAdapter = CarBrandsListAdapter(
-            carBrands,
-            R.layout.car_brand_list_item,
-            {
+            carBrandList = carBrands,
+            layoutId = R.layout.car_brand_list_item,
+            onEditClick = {
                 logDebugError("[ManageCarBrandsFragment] onEditClick: $it")
-            }, {
+            },
+            onDeleteClick = {
                 logDebugError("[ManageCarBrandsFragment] onDeleteClick: $it")
             })
         binding.carBrandsRecyclerView.adapter = carBrandsListAdapter
