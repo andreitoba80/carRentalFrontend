@@ -111,7 +111,6 @@ class UserListFragment : Fragment() {
 
     private fun addDataToList(users: ArrayList<User>) {
         userListAdapter = UserListAdapter(users, {
-            // TODO: Navigate to edit screen
             val bundle = Bundle().apply {
                 putSerializable("SELECTED_USER_DATA_KEY", it)
             }
@@ -123,5 +122,4 @@ class UserListFragment : Fragment() {
         })
         binding.usersRecyclerView.adapter = userListAdapter
     }
-
 }

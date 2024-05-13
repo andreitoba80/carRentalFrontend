@@ -1,18 +1,22 @@
 package com.example.carrentalfrontend.ui.view
 
-import android.content.DialogInterface
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.carrentalfrontend.R
 import com.example.carrentalfrontend.databinding.FragmentManageCarBrandsBinding
-import com.example.carrentalfrontend.domain.model.data.CarBrands
+import com.example.carrentalfrontend.domain.model.data.CarBrand
 import com.example.carrentalfrontend.ui.adapter.CarBrandsListAdapter
 import com.example.carrentalfrontend.ui.viewmodel.ManageCarBrandsViewModel
 import com.example.carrentalfrontend.util.logDebugError
@@ -23,8 +27,11 @@ class ManageCarBrandsFragment : Fragment() {
 
     private lateinit var binding: FragmentManageCarBrandsBinding
     private lateinit var carBrandsListAdapter: CarBrandsListAdapter
-    private lateinit var carBrandsList: ArrayList<CarBrands>
+    private lateinit var carBrandList: ArrayList<CarBrand>
     private lateinit var createCarBrandDialogView: View
+
+    private lateinit var uploadImageUri: Uri
+    private lateinit var galleryImage: ActivityResultLauncher<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +48,13 @@ class ManageCarBrandsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initListener()
+
+        galleryImage = registerForActivityResult(ActivityResultContracts.GetContent()) {
+            if (it != null) {
+                uploadImageUri = it
+                Toast.makeText(context, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun initListener() {
@@ -68,37 +82,51 @@ class ManageCarBrandsFragment : Fragment() {
                 layoutInflater.inflate(R.layout.add_car_brand_dialog_layout, null)
             setView(createCarBrandDialogView)
 
-            setPositiveButton("Create") { dialog: DialogInterface?, which: Int ->
+            setPositiveButton("Create") { dialog, _ ->
+                logDebugError("I have clicked \"Create\" Button")
+                val brandEditText =
+                    createCarBrandDialogView.findViewById<EditText>(R.id.car_brand_name_edit_text)
+                val brandName = brandEditText.text.toString()
 
+                val fileUri = uploadImageUri
+
+                viewModel.addCarBrand(brandName, fileUri)
             }
         }
         createCarBrandDialogView.findViewById<Button>(R.id.upload_icon_button).setOnClickListener {
             logDebugError("I have clicked Upload Button")
-            // TODO: Create upload file method
+
+            galleryImage.launch("image/*")
         }
         val dialog = builder?.create()
         dialog?.show()
     }
 
     private fun initObserver() {
-        viewModel.carBrandsList.observe(viewLifecycleOwner) {
+        viewModel.carBrandList.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
-                carBrandsList = it
+                carBrandList = it
                 addDataToList(it)
             }
         }
     }
 
     private fun initCarBrandsListRecyclerView() {
+        val gridLayoutManager = GridLayoutManager(context, 3)
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return 1
+            }
+        }
         binding.carBrandsRecyclerView.apply {
             setHasFixedSize(true)
-            layoutManager = GridLayoutManager(context, 2)
-            carBrandsList = ArrayList()
-            viewModel.fetchCarBrands()
+            layoutManager = gridLayoutManager
         }
+        carBrandList = ArrayList()
+        viewModel.fetchCarBrands()
     }
 
-    private fun addDataToList(carBrands: ArrayList<CarBrands>) {
+    private fun addDataToList(carBrands: ArrayList<CarBrand>) {
         carBrandsListAdapter = CarBrandsListAdapter(carBrands, R.layout.car_brand_list_item)
         binding.carBrandsRecyclerView.adapter = carBrandsListAdapter
     }

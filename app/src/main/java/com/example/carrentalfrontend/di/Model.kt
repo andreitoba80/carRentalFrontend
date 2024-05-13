@@ -60,7 +60,8 @@ val appModule = module {
     viewModel {
         HomeFragmentViewModel(
             protoRepository = get(),
-            carRepository = get()
+            carRepository = get(),
+            carBrandsRepository = get()
         )
     }
     viewModel {
@@ -96,7 +97,10 @@ val repositoryModule = module {
         CarRepositoryImpl(carApi = get())
     }
     single<CarBrandsRepository> {
-        CarBrandsRepositoryImpl(carBrandsApi = get())
+        CarBrandsRepositoryImpl(
+            context = get(),
+            carBrandsApi = get()
+        )
     }
 }
 
