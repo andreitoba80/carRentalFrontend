@@ -127,7 +127,14 @@ class ManageCarBrandsFragment : Fragment() {
     }
 
     private fun addDataToList(carBrands: ArrayList<CarBrand>) {
-        carBrandsListAdapter = CarBrandsListAdapter(carBrands, R.layout.car_brand_list_item)
+        carBrandsListAdapter = CarBrandsListAdapter(
+            carBrands,
+            R.layout.car_brand_list_item,
+            {
+                logDebugError("[ManageCarBrandsFragment] onEditClick: $it")
+            }, {
+                logDebugError("[ManageCarBrandsFragment] onDeleteClick: $it")
+            })
         binding.carBrandsRecyclerView.adapter = carBrandsListAdapter
     }
 }

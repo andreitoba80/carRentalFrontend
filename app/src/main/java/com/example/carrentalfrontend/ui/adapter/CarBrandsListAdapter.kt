@@ -13,9 +13,10 @@ import com.example.carrentalfrontend.util.logDebugError
 
 class CarBrandsListAdapter(
     private val carBrandList: List<CarBrand>,
-    private val layoutId: Int
-) :
-    RecyclerView.Adapter<CarBrandsListAdapter.CarBrandsViewHolder>() {
+    private val layoutId: Int,
+    private val onEditClick: (CarBrand) -> Unit,
+    private val onDeleteClick: (CarBrand) -> Unit
+) : RecyclerView.Adapter<CarBrandsListAdapter.CarBrandsViewHolder>() {
 
     class CarBrandsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val carBrandImageView: ImageView = itemView.findViewById(R.id.car_brand_icon)
@@ -31,18 +32,19 @@ class CarBrandsListAdapter(
 
     override fun onBindViewHolder(holder: CarBrandsViewHolder, position: Int) {
         val currentCarBrand = carBrandList[position]
-        Glide.with(holder.itemView.context)
-            .load(currentCarBrand.brandImageUrl) // Assuming brandImageUrl is a URL string
-            .into(holder.carBrandImageView)
-//        holder.carBrandImageView.setImageResource(brand.brandImageUrl)
         holder.carBrandName.text = currentCarBrand.brand
+        Glide.with(holder.itemView.context)
+            .load(currentCarBrand.brandImageUrl)
+            .into(holder.carBrandImageView)
 
         if (layoutId == R.layout.car_brand_list_item) {
             holder.editButton?.setOnClickListener {
                 logDebugError("I have clicked Edit Button on Car Brand Item")
+                onEditClick(currentCarBrand)
             }
             holder.deleteButton?.setOnClickListener {
                 logDebugError("I have clicked Delete Button on Car Brand Item")
+                onDeleteClick(currentCarBrand)
             }
         }
     }

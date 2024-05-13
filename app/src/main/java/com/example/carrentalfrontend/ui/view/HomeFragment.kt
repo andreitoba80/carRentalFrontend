@@ -74,7 +74,7 @@ class HomeFragment() : Fragment() {
     }
 
     private fun addDataToList(carBrands: ArrayList<CarBrand>) {
-        carBrandsListAdapter = CarBrandsListAdapter(carBrands, R.layout.brands_item)
+        carBrandsListAdapter = CarBrandsListAdapter(carBrands, R.layout.brands_item, {}, {})
         binding.brandsRecyclerView.adapter = carBrandsListAdapter
     }
 }
