@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="8dp"
-        android:hint="Full Name"
+        android:hint="Brand Name"
         app:layout_constraintBottom_toTopOf="@id/upload_icon_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

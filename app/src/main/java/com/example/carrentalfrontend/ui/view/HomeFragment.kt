@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carrentalfrontend.R
 import com.example.carrentalfrontend.databinding.FragmentHomeBinding
-import com.example.carrentalfrontend.domain.model.data.CarBrands
+import com.example.carrentalfrontend.domain.model.data.CarBrand
 import com.example.carrentalfrontend.domain.model.entity.Car
 import com.example.carrentalfrontend.ui.adapter.CarBrandsListAdapter
 import com.example.carrentalfrontend.ui.viewmodel.HomeFragmentViewModel
@@ -21,7 +21,7 @@ class HomeFragment() : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    private lateinit var carBrandsList: ArrayList<CarBrands>
+    private lateinit var carBrandList: ArrayList<CarBrand>
     private lateinit var carsList: ArrayList<Car>
     private lateinit var carBrandsListAdapter: CarBrandsListAdapter
 
@@ -33,6 +33,7 @@ class HomeFragment() : Fragment() {
         binding.root
     }.also {
         initCarBrandsRecyclerView()
+        initObserver()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,31 +49,32 @@ class HomeFragment() : Fragment() {
         }
     }
 
-    private fun initCarBrandsRecyclerView() {
-        binding.brandsRecyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        }
-        carBrandsList = ArrayList()
-        viewModel.fetchCars()
-        addDataToList()
-
-        carBrandsListAdapter = CarBrandsListAdapter(carBrandsList, R.layout.brands_item)
-        binding.brandsRecyclerView.adapter = carBrandsListAdapter
-    }
-
     private fun initObserver() {
         viewModel.carList.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
 
             }
         }
+
+        viewModel.carBrandList.observe(viewLifecycleOwner) {
+            if (!it.isNullOrEmpty()) {
+                carBrandList = it
+                addDataToList(it)
+            }
+        }
     }
 
-    private fun addDataToList() {
-//        carBrandsList.add(CarBrands(R.drawable.ic_tesla, "Tesla"))
-//        carBrandsList.add(CarBrands(R.drawable.ic_mercedes, "Mercedes"))
-//        carBrandsList.add(CarBrands(R.drawable.ic_toyota, "Toyota"))
-//        carBrandsList.add(CarBrands(R.drawable.ic_bmw, "BMW"))
+    private fun initCarBrandsRecyclerView() {
+        binding.brandsRecyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+            carBrandList = ArrayList()
+            viewModel.fetchCarBrands()
+        }
+    }
+
+    private fun addDataToList(carBrands: ArrayList<CarBrand>) {
+        carBrandsListAdapter = CarBrandsListAdapter(carBrands, R.layout.brands_item, {}, {})
+        binding.brandsRecyclerView.adapter = carBrandsListAdapter
     }
 }

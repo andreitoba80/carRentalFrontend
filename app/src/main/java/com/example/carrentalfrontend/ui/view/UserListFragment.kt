@@ -79,7 +79,7 @@ class UserListFragment : Fragment() {
                                 it.username.contains(searchString, ignoreCase = true)
                     } as ArrayList<User>
                     addDataToList(filteredUserList)
-                    logDebugError("Filtered list: $filteredUserList")
+                    logDebugError("Filtered User List: $filteredUserList")
                 }
             }
         )
@@ -110,18 +110,22 @@ class UserListFragment : Fragment() {
     }
 
     private fun addDataToList(users: ArrayList<User>) {
-        userListAdapter = UserListAdapter(users, {
-            // TODO: Navigate to edit screen
-            val bundle = Bundle().apply {
-                putSerializable("SELECTED_USER_DATA_KEY", it)
-            }
-            findNavController().navigate(R.id.action_userListFragment_to_editUserFragment, bundle)
-            logDebugError("OnEditClick: $it")
-        }, {
-            logDebugError("OnDeleteClick: $it")
-            viewModel.deleteUser(it.id)
-        })
+        userListAdapter = UserListAdapter(
+            userList = users,
+            onEditClick = {
+                val bundle = Bundle().apply {
+                    putSerializable("SELECTED_USER_DATA_KEY", it)
+                }
+                findNavController().navigate(
+                    R.id.action_userListFragment_to_editUserFragment,
+                    bundle
+                )
+                logDebugError("OnEditClick: $it")
+            },
+            onDeleteClick = {
+                logDebugError("OnDeleteClick: $it")
+                viewModel.deleteUser(it.id)
+            })
         binding.usersRecyclerView.adapter = userListAdapter
     }
-
 }
