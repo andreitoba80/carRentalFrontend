@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_adminScreenFragment_to_manageCarBrandsFragment"
             app:destination="@id/manageCarBrandsFragment" />
+        <action
+            android:id="@+id/action_adminScreenFragment_to_manageCarListingFragment"
+            app:destination="@id/manageCarListingFragment" />
     </fragment>
     <fragment
         android:id="@+id/userListFragment"
@@ -86,4 +89,9 @@
         android:name="com.example.carrentalfrontend.ui.view.ManageCarBrandsFragment"
         android:label="fragment_manage_car_brands"
         tools:layout="@layout/fragment_manage_car_brands" />
+    <fragment
+        android:id="@+id/manageCarListingFragment"
+        android:name="com.example.carrentalfrontend.ui.view.ManageCarListingFragment"
+        android:label="fragment_manage_car_listing"
+        tools:layout="@layout/fragment_manage_car_listing" />
 </navigation>

@@ -2,6 +2,9 @@
 <resources>
 
     <style name="TextInputLayoutStyleOnSurface" parent="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/margin_10</item>
         <item name="boxStrokeColor">@color/color_primary</item>
         <item name="android:textColorHint">@color/color_on_surface</item>
         <item name="hintTextColor">@color/color_primary</item>
@@ -18,6 +21,9 @@
     </style>
 
     <style name="PasswordInputLayoutStyle" parent="TextInputLayoutStyleOnSurface">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/margin_10</item>
         <item name="endIconCheckable">true</item>
         <item name="endIconMode">password_toggle</item>
         <item name="singleLine">true</item>

@@ -39,6 +39,10 @@ class AdminScreenFragment : Fragment() {
         binding.manageCarBrandsListingButton.root.setOnClickListener {
             findNavController().navigate(R.id.action_adminScreenFragment_to_manageCarBrandsFragment)
         }
+
+        binding.manageCarsListingButton.root.setOnClickListener {
+            findNavController().navigate(R.id.action_adminScreenFragment_to_manageCarListingFragment)
+        }
     }
 
     private fun initUi() {
